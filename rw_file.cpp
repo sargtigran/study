@@ -5,16 +5,17 @@
 
 int main ()
 {
-    std::string data;
+    char data;
 
     std::ofstream outfile;
 
     outfile.open("ofile.dat", std::ios::out );
 
-    std::cout << "Մուտքագրեք Ձեր անունը՝ ";
-    std::cin >> data;
+    std::cout << "Մուտքագրեք տեքստը՝ ";
 
-    outfile << data;
+    while (std::cin >> data) {
+        outfile << data;
+    }
 
     outfile.close();
 
@@ -22,9 +23,11 @@ int main ()
 
     read.open("ofile.dat");
 
-    std::cout << "Ձեր անունը ";
-    read >> data;
-    std::cout << data << " է " << std::endl;
+    std::cout << "Մուտքագրված տեքստ՝ ";
+    while (! read.eof()) {
+        read >> data;
+        std::cout << data; 
+    }
 
     return 0;
 }
